@@ -6,7 +6,6 @@ const {
   Text,
   Image,
   StyleSheet,
-  // TODO(lmr): Dimensions
 } = require('react-sketchapp');
 
 const TouchableMixin = {
@@ -25,6 +24,19 @@ const TouchableMixin = {
 
 Animated.inject.FlattenStyle(StyleSheet.flatten);
 
+function get (string) {
+  if (string === 'window') {
+    return {
+      width: 375,
+      height: 637
+    }
+  }
+}
+
+const Dimensions = {
+  get,
+}
+
 ReactPrimitives.inject({
   StyleSheet,
   View,
@@ -41,7 +53,10 @@ ReactPrimitives.inject({
     OS: 'sketch',
     Version: 1,
   },
+  Dimensions,
 });
+
+
 
 ReactPrimitives.inject({
   Touchable: require('../modules/Touchable')(
